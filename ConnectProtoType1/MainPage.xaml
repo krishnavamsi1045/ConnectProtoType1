@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConnectProtoType1.MainPage">
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="Your Location:" FontSize="20" FontAttributes="Bold"/>
+        <Label x:Name="LatitudeLabel" Text="Latitude: --" FontSize="18"/>
+        <Label x:Name="LongitudeLabel" Text="Longitude: --" FontSize="18"/>
+        <Label x:Name="AddressLabel" Text="Address: Fetching..." FontSize="18" LineBreakMode="WordWrap"/>
+        <Button Text="Get Location" Clicked="Button_Clicked"></Button>
+    </VerticalStackLayout>
+
+
+</ContentPage>
