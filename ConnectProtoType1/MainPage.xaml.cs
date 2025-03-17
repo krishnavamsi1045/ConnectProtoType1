@@ -26,6 +26,8 @@ namespace ConnectProtoType1
         {
             try
             {
+                waiting.IsRunning = true;
+                waiting.IsVisible = true;
                 // ✅ Check if permission is already granted
                 var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (status != PermissionStatus.Granted)
@@ -53,11 +55,7 @@ namespace ConnectProtoType1
                 if (location != null)
                 {
                     // ✅ Update UI on MainThread
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        LatitudeLabel.Text = $"Latitude: {location.Latitude}";
-                        LongitudeLabel.Text = $"Longitude: {location.Longitude}";
-                    });
+                  
 
                     // ✅ Fetch and display address
                     string address = await GetAddressFromCoordinates(location.Latitude, location.Longitude);
@@ -86,6 +84,11 @@ namespace ConnectProtoType1
             catch (Exception ex)
             {
                 await DisplayAlert("Error", $"Unexpected error: {ex.Message}", "OK");
+            }
+            finally
+            {
+                waiting.IsRunning = false;
+                waiting.IsVisible = false;
             }
         }
 
